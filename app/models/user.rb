@@ -5,6 +5,14 @@ class User
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  field :name, type: String
+  field :phone, type: Integer
+  field :role, type: String
+  field :address, type: String
+  field :age, type: Integer
+  field :speciality, type: String
+  field :experience, type: Integer, default: 0
+
   ## Database authenticatable
   field :email,              type: String, default: ""
   field :encrypted_password, type: String, default: ""
