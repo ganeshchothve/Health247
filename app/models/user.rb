@@ -7,10 +7,12 @@ class User
 
   field :name, type: String
   field :phone, type: Integer
-  field :role, type: String
+  field :role, type: String, default: 'patient'
+  field :hospital, type: String
   field :address, type: String
   field :age, type: Integer
-  field :speciality, type: String
+  field :qualification, type: String
+  field :specification, type: String
   field :experience, type: Integer, default: 0
 
   ## Database authenticatable
@@ -41,4 +43,7 @@ class User
   # field :failed_attempts, type: Integer, default: 0 # Only if lock strategy is :failed_attempts
   # field :unlock_token,    type: String # Only if unlock strategy is :email or :both
   # field :locked_at,       type: Time
+
+  has_many :appointments
+
 end

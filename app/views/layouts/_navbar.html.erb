@@ -1,24 +1,29 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-between">
-  <%= link_to 'Health247', root_path, class: "navbar-brand"%>
-  <form class="form-inline my-2 my-lg-0 float-center">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
+  <%= link_to 'Health247', user_signed_in? ? user_path(current_user.id) : root_path, class: "navbar-brand"%>
   <div id="navbarSupportedContent" class="float-end">
     <ul class="navbar-nav mr-auto">
+    <% if !user_signed_in? %>
       <li class="nav-item active">
         <div class="dropdown">
           <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Register
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <%= link_to 'Doctor', new_user_registration_path, class: 'dropdown-item' %>
+            <%= link_to 'Doctor', new_user_registration_path(user: {role: 'doctor'}), class: 'dropdown-item' %>
             <%= link_to 'Patient', new_user_registration_path(user: {role: 'patient'}), class: 'dropdown-item' %>
           </div>
         </div>
       </li>
+    <% end %>
       <li class="nav-item">
+      <% if user_signed_in? %>
+        <%= link_to 'My Appointments', user_appointments_path(current_user.id), class: 'ml-2 btn btn-secondary' %>
+      <% end %>
+      <% if user_signed_in? %>
+        <%= link_to 'Log Out', destroy_user_session_path, method: :delete, class: 'ml-2 btn btn-secondary' %>
+      <% else %>
         <%= link_to 'Login', new_user_session_path, class: 'ml-2 btn btn-secondary' %>
+      <% end %>
       </li>
       </div>
     </ul>

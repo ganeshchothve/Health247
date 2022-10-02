@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
 
+  before_action :set_user, except: %i[index new]
+
   def index
   end
 
@@ -8,6 +10,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    @users = User.where(role: 'doctor')
   end
 
   def edit
@@ -20,6 +23,12 @@ class UsersController < ApplicationController
   end
   
   def destroy
+  end
+
+  private
+
+  def set_user
+    @user = User.where(id: params[:id]).first
   end
 
 end

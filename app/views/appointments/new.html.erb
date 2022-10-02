@@ -1,7 +1,5 @@
 
-
-
-<%= form_for @user do |f| %>
+<%= form_for [:user, @appointment] do |f| %>
   <div id="mynewpost" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -11,16 +9,17 @@
         </div>
         <div class="modal-body">
           <div class="field">
-            <%= f.label :name %>
-            <%= f.text_area :name, class: "form-control task_title" %>
+            <%= f.hidden_field :doctor_id, value: params[:user_id] %>
           </div>
           <div class="field">
-            <%= f.label :phone %>
-            <%= f.text_area :name, class:"form-control task_content"%>
+            <%= f.hidden_field :patient_id, value: current_user.id %>
+          </div>
+          <div class="field">
+            <%= f.label :query %>
+            <%= f.text_area :query, class:"form-control task_content"%>
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-bs-dismiss="modal" id="mynewpostclose">Close</button>
           <%= submit_tag "Create", class: "btn btn-primary" %>
         </div>
       </div>

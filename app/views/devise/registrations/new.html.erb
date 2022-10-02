@@ -1,29 +1,77 @@
-<h2>Sign up</h2>
+<div class="jumbotron">
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+  <h2>Sign up</h2>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
+    <div class="field">
+      <%= f.label :name %><br />
+      <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
+    </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
+    <div class="field">
+      <%= f.label :email %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    </div>
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
+    <div class="field">
+      <%= f.label :phone %><br />
+      <%= f.number_field :phone, autofocus: true, autocomplete: "phone"%>
+    </div>
 
-<%= render "devise/shared/links" %>
+    <div class="field">
+      <%= f.label :address %><br />
+      <%= f.text_field :address, autofocus: true, autocomplete: "address" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :age %><br />
+      <%= f.number_field :age, autofocus: true, autocomplete: "age"%>
+    </div>
+
+    <% if params.dig(:user, :role) == 'doctor' %>
+      <div class="field">
+        <%= f.label :qualification %><br />
+        <%= f.text_field :qualification, autofocus: true, autocomplete: "qualification" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :specification %><br />
+        <%= f.text_field :specification, autofocus: true, autocomplete: "specification" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :hospital %><br />
+        <%= f.text_field :hospital, autofocus: true, autocomplete: "hospital" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :experience %><br />
+        <%= f.number_field :experience, autofocus: true, autocomplete: "experience" %>
+      </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.hidden_field :role, value: params.dig(:user, :role) %>
+    </div>
+
+    <div class="field">
+      <%= f.label :password %>
+      <% if @minimum_password_length %>
+      <em>(<%= @minimum_password_length %> characters minimum)</em>
+      <% end %><br />
+      <%= f.password_field :password, autocomplete: "new-password" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :password_confirmation %><br />
+      <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "Sign up" %>
+    </div>
+  <% end %>
+
+</div>
