@@ -1,1 +1,14 @@
-doctor
+
+<div class='d-flex justify-content-center'>
+  <div class = 'btn btn-danger m-4 float-center'>My Appointments</div>
+</div>
+
+<% Appointment.where(doctor_id: current_user.id).each do |appointment| %>
+  <div class="card m-4">
+    <div class="card-body">
+      <h5 class="card-title">Appointment for: <%= appointment.query %></h5>
+      <p class="card-text">Patient Name: <%= appointment.user.name %></p>
+      <p class="card-text">Age: <%= appointment.user.age %></p>
+    </div>
+  </div>
+<% end %>

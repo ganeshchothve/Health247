@@ -1,5 +1,5 @@
 
-<% if current_user.role == 'patient' %>
+<% if(current_user.role == 'patient') %>
   <%= render 'patient' %>
 <% else %>
   <%= render 'doctor' %>

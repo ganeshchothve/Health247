@@ -1,6 +1,5 @@
 class AppointmentsController < ApplicationController
 
-  before_action :set_user, only: [:]
   before_action :set_params, only: [:create, :update]
   def index
     @appointments = Appointment.where(user_id:params[:user_id])
@@ -17,10 +16,12 @@ class AppointmentsController < ApplicationController
   end
 
   def create
-    @appointment = Appointment.new(set_params)
+    @appointment = current_user.appointments.build(set_params)
     if @appointment.save
+      flash[:success] = 'Appointment created successfully'
       redirect_to user_appointments_path(current_user.id)
     else
+      flash[:error] = @appointment.errors.messages
       render 'new', locales: {user_id: set_params[:doctor_id]}
     end
   end
@@ -36,5 +37,5 @@ class AppointmentsController < ApplicationController
   def set_params
     params.require(:appointment).permit(:doctor_id, :patient_id, :query)
   end
-  
+
 end

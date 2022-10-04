@@ -5,5 +5,8 @@ class Appointment
   field :query, type: String
   field :feedback, type: String
 
-  belongs_to :user
+  validates :query, presence: true
+  
+  has_one :comment
+
 end

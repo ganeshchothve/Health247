@@ -1,4 +1,3 @@
-
 <% @users.each do |user| %>
   <div class="card m-4">
     <div class="card-body">
@@ -8,9 +7,7 @@
       <p class="card-text"><%= user.specification %></p>
       <p class="card-text">Ex.: <%= user.experience %>yrs</p>
       <p class="card-text"><%= user.address %></p>
-      <%= link_to 'Add Appointment', new_user_appointment_path(user.id), class: 'ml-2 btn btn-secondary' %>
+      <%= link_to 'Book Appointment', new_user_appointment_path(user.id), class: 'ml-2 btn btn-secondary' %>
     </div>
   </div>
 <% end %>
-
-
