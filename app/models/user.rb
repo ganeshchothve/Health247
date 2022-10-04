@@ -46,4 +46,12 @@ class User
 
   has_many :appointments
 
+  def appointments
+    if self.role == 'doctor'
+      Appointment.where(doctor_id: self.id)
+    else
+      Appointment.where(patient_id: self.id)
+    end
+  end
+
 end

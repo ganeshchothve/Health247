@@ -3,7 +3,6 @@ class Comment
 
   field :response, type: String
 
-  belongs_to :user
   belongs_to :appointment
 
 end

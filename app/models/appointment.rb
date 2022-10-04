@@ -7,6 +7,15 @@ class Appointment
 
   validates :query, presence: true
   
+  belongs_to :user
   has_one :comment
+
+  def patient
+    User.where(id: self.patient_id).first
+  end
+
+  def doctor
+    User.where(id: self.doctor_id).first
+  end
 
 end

@@ -2,7 +2,7 @@ class AppointmentsController < ApplicationController
 
   before_action :set_params, only: [:create, :update]
   def index
-    @appointments = Appointment.where(user_id:params[:user_id])
+    @appointments = Appointment.where(user_id: params[:user_id])
   end
 
   def new
