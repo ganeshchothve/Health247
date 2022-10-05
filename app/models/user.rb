@@ -45,5 +45,7 @@ class User
   # field :locked_at,       type: Time
 
   has_many :appointments
+  has_many :appointments, inverse_of: 'doctor'
+  has_many :appointments, inverse_of: 'patient'
 
 end

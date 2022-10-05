@@ -1,0 +1,22 @@
+
+
+
+  <div class="w-100 position-absolute d-flex align-items-center justify-content-center">
+  <div class="card m-4">
+    <div class="card-body">
+      <p class="card-text">Name: <%= @user.name %></p>
+      <p class="card-text">Phone: <%= @user.phone %></p>
+      <p class="card-text">Age: <%= @user.age %>yrs</p>
+      <p class="card-text">Address: <%= @user.address %></p>
+      
+
+      <% if @user.role == 'doctor' %>
+        <p class="card-title">Hospital: <%= @user.hospital %></p>
+        <p class="card-title">Qualification: <%= @user.qualification %></p>
+        <p class="card-title">Specification: <%= @user.specification %></p>
+        <p class="card-text">Ex.: <%= @user.experience %>yrs</p>
+      <% end %>
+
+    </div>
+  </div>
+</div>

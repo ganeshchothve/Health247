@@ -2,7 +2,11 @@ class AppointmentsController < ApplicationController
 
   before_action :set_params, only: [:create, :update]
   def index
-    @appointments = Appointment.where(user_id: params[:user_id])
+    if current_user.role == 'patient'
+      @appointments = Appointment.where(patient_id: current_user.id)
+    else
+      @appointments = Appointment.where(doctor_id: current_user.id)
+    end
   end
 
   def new
