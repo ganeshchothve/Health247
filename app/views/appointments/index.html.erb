@@ -11,6 +11,12 @@
       <p class="card-text">Hospital Name: <%= appointment.doctor.hospital %></p>
       <p class="card-text">Doctor Name: <%= appointment.doctor.name %></p>
       <p class="card-text">Patient Na\me: <%= appointment.patient.name %></p>
+      <% if appointment.comment.present? %>
+        <div class="card-footer text-muted">
+          <p class="card-text"><%= appointment.comment.response %></p>
+        </div>
+      <% end %>
+      </div>
     </div>
   </div>
 <% end %>

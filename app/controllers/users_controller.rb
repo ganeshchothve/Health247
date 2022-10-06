@@ -10,6 +10,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    @comment = Comment.new
     @users = User.where(role: 'doctor')
   end
 

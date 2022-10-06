@@ -1,8 +1,8 @@
 class Comment
-  include Mongoid::Documents
+  include Mongoid::Document
 
   field :response, type: String
 
-  belongs_to :appointment
+  embedded_in :appointment
 
 end

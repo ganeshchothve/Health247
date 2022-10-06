@@ -11,7 +11,9 @@ class Appointment
   belongs_to :doctor, class_name: 'User'
   belongs_to :patient, class_name: 'User'
 
-  has_one :comment
+  embeds_one :comment
+  accepts_nested_attributes_for :comment, allow_destroy: true
+
 
   # def patient
   #   User.where(id: self.patient_id).first

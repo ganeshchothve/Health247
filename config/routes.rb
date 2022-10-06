@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     get '/profile', to: 'users#profile', on: :member
   end
 
-  resources :posts do
+  resources :appointments do
     resources :comments
   end
 

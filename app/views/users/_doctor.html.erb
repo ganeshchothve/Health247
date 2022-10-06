@@ -5,10 +5,23 @@
 
 <% Appointment.where(doctor_id: current_user.id).each do |appointment| %>
   <div class="card m-4">
-    <div class="card-body text-white bg-dark">
+    <div class="card-body">
       <h5 class="card-title">Appointment for: <%= appointment.query %></h5>
       <p class="card-text">Patient Name: <%= appointment.patient.name %></p>
       <p class="card-text">Age: <%= appointment.patient.age %></p>
+      <div class="card-footer text-muted">
+        <% if appointment.comment.present? %>
+          <p class="card-text"><%= appointment.comment.response %></p>
+        <% else %>
+          <%= form_for [appointment, @comment] do |f|%>
+            <div class="form-group">
+              <%= f.label 'New comment' %>
+              <%= f.text_area :response, class: 'form-control' %>
+            </div>
+            <%= f.submit 'Submit', class: 'btn btn-primary' %>
+          <% end %>
+        <% end %>
+      </div>
     </div>
   </div>
 <% end %>

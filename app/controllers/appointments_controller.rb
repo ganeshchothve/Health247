@@ -21,7 +21,9 @@ class AppointmentsController < ApplicationController
 
   def create
     @appointment = current_user.appointments.build(set_params)
+    doctor= User.find(params.dig(:appointment,:doctor_id))
     if @appointment.save
+      UserMailer.with(patient: current_user, doctor: doctor).appointment_created.deliver_now
       flash[:success] = 'Appointment created successfully'
       redirect_to user_appointments_path(current_user.id)
     else
